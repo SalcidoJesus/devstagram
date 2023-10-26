@@ -6,17 +6,38 @@
         <title>Devstagram - @yield('titulo')</title>
 		@vite('resources/css/app.css')
     </head>
-    <body class="antialiased">
-		<nav>
-			<a href="/">Principal</a>
-			<a href="/owo">owo</a>
-		</nav>
+    <body class="bg-gray-100">
 
-		<h1 class="text-4xl text-red-500">@yield('titulo')</h1>
+		<header class="p-5 border-b bg-white shadow-sm">
+			<div class="container mx-auto flex justify-between items-center">
 
-		<hr/>
+				<h1 class="text-3xl font-black">
+					Devstagram
+				</h1>
 
-		@yield('contenido')
+				<nav class="flex gap-2 items-center">
+					<a class="font-bold uppercase text-gray-600 text-sm" href="#">Login</a>
+					<a class="font-bold uppercase text-gray-600 text-sm" href="{{ route('registrar') }}">Crear cuenta</a>
+				</nav>
+
+			</div>
+		</header>
+
+
+		{{-- contenido de ls vistas --}}
+		<main class="container mx-auto mt-10">
+			<h2 class="font-black text-center text-3xl mb-10">
+				@yield('titulo')
+			</h2>
+			@yield('contenido')
+		</main>
+
+
+
+		{{-- footer --}}
+		<footer class="mt-10 text-center p-5 text-gray-500 font-bold uppercase">
+			DevStagram - Todos los derechos reservados {{ now() -> year }}
+		</footer>
 
 
     </body>

@@ -1,2 +1,14 @@
 
 php artisan serve
+npm run dev
+
+
+-- migraciones
+php artisan migrate
+php artisan migrate:rollback
+php artisan migrate:rollback --step=5
+php artisan make:migration agregar_imagen_user
+
+-- eloquent
+php artisan make:model Cliente
+php artisan migrate:refresh
