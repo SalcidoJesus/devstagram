@@ -18,7 +18,7 @@
 			<form method="POST" action="{{route('login')}}">
 				@csrf
 
-				
+
 
 				@if ( session('mensaje') )
 					<p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">
@@ -58,6 +58,15 @@
 						<p class="bg-red-500 text-white my-2 rounded-lg text-sm p-2 text-center">{{ $message }}</p>
 					@enderror
 				</div>
+
+
+				<div class="mb-5 flex gap-2">
+					<input type="checkbox" name="remember" id="remember">
+					<label for="remember" class="text-gray-500 text-sm select-none">
+						Mantener mi sesión
+					</label>
+				</div>
+
 
 				<input type="submit" value="Iniciar sesión" class="bg-sky-600 hover:bg-sky-700 transition-colors cursor-pointer uppercase font-bold w-full p-3 text-white rounded-lg">
 
