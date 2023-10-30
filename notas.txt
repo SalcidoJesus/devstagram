@@ -12,3 +12,13 @@ php artisan make:migration agregar_imagen_user
 -- eloquent
 php artisan make:model Cliente
 php artisan migrate:refresh
+
+-- factory
+php artisan make:factory FactoryPrueba
+
+-- tinker
+composer dump-autoload
+php artisan tinker
+App\Models\Post::factory()
+Post::factory -> times( 200 ) -> create();
+Post::factory()->times(15)->create();
