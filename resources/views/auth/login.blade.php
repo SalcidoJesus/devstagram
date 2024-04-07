@@ -9,7 +9,7 @@
 
 		{{-- un lado --}}
 		<div class="md:w-6/12 p-5">
-			<img src="{{ asset('img/login.jpg') }}" alt="Registr de usuarios">
+			<img src="{{ asset('img/login.jpg') }}" alt="Registro de usuarios">
 		</div>
 
 

@@ -9,15 +9,21 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
 	public function __construct() {
-		$this->middleware('auth');
+		$this->middleware('auth')->except(['show', 'index']);
 	}
 
 
     public function index( User $user ) {
 
+		// también puedo ponerle simplePaginate
+		$posts = Post::where('user_id', $user->id)->paginate(12);
+
+		// también puedo ir al dashboard y hacerle $user->posts, y con eso mostrar todo, pero no tiene paginación
+
 		// dd( $user->username );
 		return view('dashboard', [
-			'user' => $user
+			'user' => $user,
+			'posts' => $posts,
 		]);
 	}
 
@@ -49,14 +55,29 @@ class PostController extends Controller
 
 		// otra forma de insertar
 
-		$post = new Post;
-		$post -> titulo = $request -> titulo;
-		$post -> descripcion = $request -> descripcion;
-		$post -> imagen = $request -> imagen;
-		$post -> user_id = auth() -> user() -> id;
-		$post -> save();
+		// $post = new Post;
+		// $post -> titulo = $request -> titulo;
+		// $post -> descripcion = $request -> descripcion;
+		// $post -> imagen = $request -> imagen;
+		// $post -> user_id = auth() -> user() -> id;
+		// $post -> save();
+
+		// otra forma
+		$request->user()->posts()->create([
+			'titulo' => $request -> titulo,
+			'descripcion' => $request -> descripcion,
+			'imagen' => $request -> imagen,
+			'user_id' => auth() -> user() -> id
+		]);
 
 		return redirect() -> route( 'posts.index', auth() -> user() -> username );
 
+	}
+
+	public function show( User $user, Post $post)
+	{
+		return view('posts.show', [
+			'post' => $post
+		]);
 	}
 }

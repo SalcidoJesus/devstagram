@@ -43,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+	public function posts()
+	{
+		/*
+			este usuario tiene muchos post
+			si en la table de post, la llave foranea se llama id_autor
+			ps eso se pone como segundo parámetro en las función hasMany
+		*/
+		return $this->hasMany(Post::class);
+	}
 }
