@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class PostController extends Controller
 {
@@ -16,7 +17,7 @@ class PostController extends Controller
     public function index( User $user ) {
 
 		// también puedo ponerle simplePaginate
-		$posts = Post::where('user_id', $user->id)->paginate(12);
+		$posts = Post::where('user_id', $user->id)->latest()->paginate(12);
 
 		// también puedo ir al dashboard y hacerle $user->posts, y con eso mostrar todo, pero no tiene paginación
 
@@ -79,5 +80,23 @@ class PostController extends Controller
 		return view('posts.show', [
 			'post' => $post
 		]);
+	}
+
+	public function destroy( Post $post)
+	{
+		// le paso sólo el Post, porque el usuario es el autenticado
+		$this -> authorize( 'delete', $post );
+		$post -> delete();
+
+		// eliminar la imagen
+		$imagen_path = public_path('uploads/' . $post -> imagen);
+
+		if( File::exists( $imagen_path ) ) {
+			unlink( $imagen_path );
+		}
+
+
+		return redirect()->route('posts.index', auth()->user()->username);
+
 	}
 }

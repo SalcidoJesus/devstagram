@@ -43,7 +43,7 @@
 					@enderror
 				</div>
 
-				{{-- nombre de la persona --}}
+				{{-- correo de la persona --}}
 				<div class="mb-5">
 					<label for="password" class="mb-2 block uppercase to-gray-500 font-bold">
 						Contraseña
