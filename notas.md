@@ -142,3 +142,18 @@ controlador de home
 ```
 php artisan make:controler HomeController
 ```
+
+crear componente
+```
+php artisan make:component ListarPost
+```
+
+limpiar vistas si meto cosas como componentes y variables
+```
+php artisan view:clear
+```
+
+instalar livewire
+```
+composer require livewire/livewire
+```
